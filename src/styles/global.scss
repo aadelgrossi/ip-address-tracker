@@ -1,10 +1,13 @@
-$very-dark-gray: hsl(0, 0%, 17%);
-$dark-gray: hsl(0, 0%, 59%);
 
 * {
 	margin: 0;
 	padding: 0;
-} 
+}
+
+:root {
+	--very-dark-gray:hsl(0, 0%, 17%);
+	--dark-gray:  hsl(0, 0%, 59%);
+}
 
 html, body {
 	position: relative;
@@ -13,7 +16,7 @@ html, body {
 }
 
 body {
-	color: $very-dark-gray;
+	color: var(--very-dark-gray);
 	box-sizing: border-box;
 	font-family: 'Rubik', sans-serif;
 	font-size: 16px;
@@ -25,9 +28,10 @@ h1 {
 	color: white;
 }
 
-h3 {
+span {
 	font-weight: 500;
-	color: $dark-gray;
+	text-transform: uppercase;
+	color: var(--dark-gray);
 }
 
 a {
@@ -76,24 +80,16 @@ button {
 
 
 	&:hover {
-		background-color: $very-dark-gray;
+		background-color: var(--very-dark-gray);
 	}
 	
 }
 
-button:disabled {
-	color: #999;
-}
-
-button:not(:disabled):active {
-	background-color: #ddd;
-}
-
 button:focus {
-	border-color: #666;
+	border-color: var(--dark-gray);
 }
 
 
 ::placeholder {
-	color: $dark-gray;
+	color: var(--dark-gray);
 }
