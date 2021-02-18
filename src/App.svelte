@@ -1,10 +1,14 @@
-<script lang="ts">
-	export let name: string
-</script>
-
 <style lang="scss"  src="./styles/App.scss" > </style>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<div class='top-section'> 
+		<h1>IP Address Tracker</h1>
+
+			<div class="input-group">
+				<input placeholder="Search for any IP address or domain"/>
+				<button type="submit">
+					<img src="/icons/icon-arrow.svg" alt="search" />
+				</button>
+			</div>
+	</div>
 </main>

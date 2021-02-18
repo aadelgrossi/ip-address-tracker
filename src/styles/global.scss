@@ -1,6 +1,11 @@
 $very-dark-gray: hsl(0, 0%, 17%);
 $dark-gray: hsl(0, 0%, 59%);
 
+* {
+	margin: 0;
+	padding: 0;
+} 
+
 html, body {
 	position: relative;
 	width: 100%;
@@ -9,14 +14,14 @@ html, body {
 
 body {
 	color: $very-dark-gray;
-	margin: 0;
-	padding: 0;
 	box-sizing: border-box;
 	font-family: 'Rubik', sans-serif;
+	font-size: 16px;
 }
 
 h1 {
-	font-weight: 700;
+	font-weight: 500;
+  font-size: 1.6em;
 	color: white;
 }
 
@@ -38,23 +43,42 @@ label {
 	display: block;
 }
 
-input, button, select, textarea {
+input, select, textarea {
 	font-family: inherit;
 	font-size: inherit;
-	padding: 0.4em;
-	margin: 0 0 0.5em 0;
+	padding: 1em 1.5em;
 	box-sizing: border-box;
-	border-radius: 2px;
+	height:60px;
+	border: none;
+}
+
+input, button {
+	border-radius: 16px;
 }
 
 input:disabled {
 	color: #ccc;
 }
 
+input:focus {
+	outline: 0;
+}
+
 button {
-	color: #333;
-	background-color: #f4f4f4;
-	outline: none;
+	display: flex;
+	width: 58px;
+	cursor: pointer;
+	align-items: center;
+	justify-content: center;
+	color:white;
+	border: none;
+	background-color: black;
+
+
+	&:hover {
+		background-color: $very-dark-gray;
+	}
+	
 }
 
 button:disabled {
@@ -67,4 +91,9 @@ button:not(:disabled):active {
 
 button:focus {
 	border-color: #666;
+}
+
+
+::placeholder {
+	color: $dark-gray;
 }

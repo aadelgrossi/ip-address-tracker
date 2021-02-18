@@ -1,11 +1,40 @@
 main {
   text-align: center;
-  padding: 1em;
-  margin: 0 auto;
+  width: 100%;
+}
 
-  h1 {
-    color: red;
-    text-transform: uppercase;
-    font-size: 4em;
-  }  
+.top-section {
+  background-image: url('/pattern-bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 24%;
+  height: 300px;
+
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+}
+
+.input-group {
+  margin-top: 2em;
+  width: 100%;
+  display: flex;
+
+  @media(min-width: 640px) {
+    max-width: 560px;
+  }
+
+  > input {    
+    width: 100%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  > button {
+    width: 64px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
 }
