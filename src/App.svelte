@@ -1,3 +1,7 @@
+<script>
+	import Map from './components/Map.svelte'
+</script>
+
 <style lang="scss"  src="./styles/App.scss" > </style>
 
 <main>
@@ -29,5 +33,8 @@
 						<p>SpaceX Starlink</p>
 					</div>
 				</div>
+		</div>
+		<div class="map">
+			<Map />
 		</div>
 </main>
