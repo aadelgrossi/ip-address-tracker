@@ -2,9 +2,11 @@
   "singleQuote": true,
   "trailingComma": "es5",
   "semi": false,
-  "plugins": ["prettier-plugin-svelte"],
+  "plugins": [
+    "prettier-plugin-svelte"
+  ],
   "svelteStrictMode": false,
-	"svelteBracketNewLine": true,
+  "svelteBracketNewLine": true,
   "svelteAllowShorthand": true,
-  "svelteSortOrder" : "options-styles-scripts-markup"
+  "svelteSortOrder": "options-styles-scripts-markup"
 }
