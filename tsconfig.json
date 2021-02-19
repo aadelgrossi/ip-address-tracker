@@ -2,5 +2,13 @@
   "extends": "@tsconfig/svelte/tsconfig.json",
 
   "include": ["src/**/*"],
-  "exclude": ["node_modules/*", "__sapper__/*", "public/*"]
+  "exclude": ["node_modules/*", "__sapper__/*", "public/*"],
+  "compilerOptions": {
+    "strict": true,
+    "target": "es2015",
+    "module": "es2015",
+    "types": [
+      "svelte", "node"
+    ]
+  }
 }

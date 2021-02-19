@@ -6,6 +6,8 @@ import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import scss from "rollup-plugin-scss";
+import { config } from 'dotenv';
+import replace from '@rollup/plugin-replace';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -65,7 +67,14 @@ export default {
 			sourceMap: !production,
 			inlineSources: !production
 		}),
-
+		replace({      
+			process: JSON.stringify({
+				env: {
+					isProd: production,
+					...config().parsed
+				} 
+			}),
+		}),
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
 		!production && serve(),
