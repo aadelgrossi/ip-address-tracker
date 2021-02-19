@@ -7,6 +7,5 @@
   ],
   "svelteStrictMode": false,
   "svelteBracketNewLine": true,
-  "svelteAllowShorthand": true,
-  "svelteSortOrder": "options-styles-scripts-markup"
+  "svelteAllowShorthand": true
 }
