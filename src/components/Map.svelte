@@ -13,8 +13,18 @@
   let map: Map
   export let position: LatLngExpression
 
+  const mapIcon = L.icon({
+    iconUrl: '/icons/icon-location.svg',
+    iconSize: [46, 56],
+  })
+
   const createMap = (container: HTMLDivElement): Map => {
     let m = L.map(container).setView(position, 16)
+
+    L.marker(m.getCenter(), {
+      icon: mapIcon,
+    }).addTo(m)
+
     L.tileLayer(
       'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
       {
