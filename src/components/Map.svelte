@@ -1,30 +1,41 @@
-<script>
-  import * as L from 'leaflet';
-  let map;
+<style>
+  div {
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+  }
+</style>
 
-  function createMap(container) {
-    let m = L.map(container).setView([51.505, -0.09], 13);
+<script lang="typescript">
+  import type { Map, LatLngExpression } from 'leaflet'
+  import * as L from 'leaflet'
+
+  let map: Map
+  export let position: LatLngExpression
+
+  const createMap = (container: HTMLDivElement): Map => {
+    let m = L.map(container).setView(position, 16)
     L.tileLayer(
       'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
       {
         attribution: `&copy;<a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>,
           &copy;<a href="https://carto.com/attributions" target="_blank">CARTO</a>`,
         subdomains: 'abcd',
-        maxZoom: 14,
+        maxZoom: 16,
       }
-    ).addTo(m);
+    ).addTo(m)
 
-    return m;
+    return m
   }
 
-  function mapAction(container) {
-    map = createMap(container);
+  const mapAction = (container: HTMLDivElement) => {
+    map = createMap(container)
     return {
       destroy: () => {
-        map.remove();
+        map.remove()
       },
-    };
+    }
   }
 </script>
 
-<div style="height:100%;width:100%;z-index:0;" use:mapAction />
+<div use:mapAction />
