@@ -70,7 +70,6 @@ export default {
 		replace({      
 			process: JSON.stringify({
 				env: {
-					isProd: production,
 					...config().parsed
 				} 
 			}),
