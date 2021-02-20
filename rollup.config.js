@@ -41,6 +41,7 @@ export default {
 		file: 'public/build/bundle.js'
 	},
 	plugins: [
+		injectProcessEnv({...config().parsed}),
 		svelte({
 			preprocess: sveltePreprocess({ sourceMap: !production }),
 			compilerOptions: {
@@ -67,7 +68,6 @@ export default {
 			sourceMap: !production,
 			inlineSources: !production
 		}),
-		injectProcessEnv({...config().parsed}),
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
 		!production && serve(),
