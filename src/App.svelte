@@ -50,6 +50,7 @@
           bind:value={query}
           on:keydown={onInput}
           placeholder="Search for any IP address or domain"
+          title="Search for any IP address or domain"
         />
         <button aria-label="search" on:click={onSubmit} disabled={loading}>
           {#if loading}
