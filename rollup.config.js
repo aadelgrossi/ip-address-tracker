@@ -7,7 +7,7 @@ import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import scss from "rollup-plugin-scss";
 import { config } from 'dotenv';
-import replace from '@rollup/plugin-replace';
+import injectProcessEnv from 'rollup-plugin-inject-process-env';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -67,13 +67,7 @@ export default {
 			sourceMap: !production,
 			inlineSources: !production
 		}),
-		replace({      
-			process: JSON.stringify({
-				env: {
-					...config().parsed
-				} 
-			}),
-		}),
+		injectProcessEnv({...config().parsed}),
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
 		!production && serve(),
