@@ -85,10 +85,11 @@ button {
 	
 }
 
-button:focus {
-	border-color: var(--dark-gray);
+button:disabled {
+	opacity: 0.8;
+	background-color: var(--dark-gray);
+	cursor: auto;
 }
-
 
 ::placeholder {
 	color: var(--dark-gray);
