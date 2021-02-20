@@ -41,7 +41,6 @@ export default {
 		file: 'public/build/bundle.js'
 	},
 	plugins: [
-		injectProcessEnv({...config().parsed}),
 		svelte({
 			preprocess: sveltePreprocess({ sourceMap: !production }),
 			compilerOptions: {
@@ -63,6 +62,7 @@ export default {
 			browser: true,
 			dedupe: ['svelte']
 		}),
+		injectProcessEnv({...config().parsed}),
 		commonjs(),
 		typescript({
 			sourceMap: !production,
