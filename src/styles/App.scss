@@ -4,10 +4,8 @@ main {
 }
 
 .top-section {
-  background-image: url('/pattern-bg.png');
-  background-repeat: no-repeat;
+  background: #fff url('/pattern-bg.png') no-repeat 24%;
   background-size: cover;
-  background-position: 24%;
   height: 18vh;
 
   display:flex;
@@ -49,6 +47,7 @@ main {
   gap: 1.5rem;
   box-shadow: 0px 0px 32px 5px rgba(0,0,0,0.1);
   z-index: 1;
+  width: 85%;
 
   @media(min-width: 640px) {
     padding: 48px;
@@ -66,7 +65,7 @@ main {
   align-items: center;
 
   > p {
-    font-size: calc(1.2em + 0.4vw);
+    font-size: calc(1em + 0.5vw);
     font-weight: 500;
   }
 
@@ -88,11 +87,11 @@ main {
         content: '';
         position: absolute;
         background-color: var(--dark-gray);
-        opacity: 0.3;
+        opacity: 0.4;
         top: 0;
-        left: -36px;
+        left: -24px;
         width: 1px;
-        height: 60px;
+        height: 100%;
       }
     }
   }
