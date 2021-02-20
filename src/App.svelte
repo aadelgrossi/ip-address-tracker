@@ -6,12 +6,14 @@
 
   let result: IpfyResponse
   let position: LatLngExpression
+  let location: string
   let query: string
   let loading = false
 
   onMount(async () => {
     result = await fetchInfo('')
     position = [result.location.lat, result.location.lng]
+    location = `${result.location.city}, ${result.location.region} ${result.location.postalCode}`
   })
 
   const onSubmit = async () => {
@@ -21,6 +23,8 @@
       .then((response) => {
         result = response
         position = [response.location.lat, response.location.lng]
+        location = `${result.location.city}, ${result.location.region} ${result.location.postalCode}`
+
         loading = false
       })
       .catch((err) => {
@@ -73,8 +77,8 @@
         </div>
         <div class="item">
           <span>Location</span>
-          <p>
-            {`${result.location.city}, ${result.location.region} ${result.location.postalCode}`}
+          <p title={location}>
+            {location}
           </p>
         </div>
         <div class="item">
@@ -83,7 +87,7 @@
         </div>
         <div class="item">
           <span>ISP</span>
-          <p>{result.as.name}</p>
+          <p title={result.as.name}>{result.as.name}</p>
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ main {
 .top-section {
   background: #fff url('/pattern-bg.png') no-repeat 24%;
   background-size: cover;
-  height: 18vh;
+  height: 22vh;
 
   display:flex;
   flex-direction: column;
@@ -40,7 +40,7 @@ main {
 .info {
   display: flex;
   padding: 24px;
-  margin-top: 24px;
+  margin-top: 48px;
   flex-direction: column;
   background-color: white;
   border-radius: 24px;
@@ -75,13 +75,25 @@ main {
     margin-bottom: 4px;
   }
 
-  @media(min-width: 1100px) {
+  @media(min-width: 640px) {
     align-items: flex-start;
+  }
 
-    p {
+  
+  p {
+    @media(min-width: 640px) {
       text-align: left;
     }
 
+    @media(min-width: 1100px) {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: 420px;
+    }
+  }
+
+  @media(min-width: 1100px) {
     & + & {
       &:before {
         content: '';
@@ -98,5 +110,5 @@ main {
 }
 
 .map {
-  height: calc(82vh - 96px);
+  height: calc(78vh - 96px);
 }
