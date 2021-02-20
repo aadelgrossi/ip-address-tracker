@@ -6,12 +6,10 @@ Solution for [IP Address Tracker](https://www.frontendmentor.io/challenges/ip-ad
 
 ## Tools & stack 
 
-<img alt="TypeScript" src="https://img.shields.io/badge/typescript%20-%23007ACC.svg?&style=for-the-badge&logo=typescript&logoColor=white"/>
-<img alt="Svelte" src="https://img.shields.io/badge/svelte%20-%23f1413d.svg?&style=for-the-badge&logo=svelte&logoColor=white"/>
-<img alt="SASS" src="https://img.shields.io/badge/SASS%20-hotpink.svg?&style=for-the-badge&logo=SASS&logoColor=white"/>  
+<img alt="TypeScript" src="https://img.shields.io/badge/typescript%20-%23007ACC.svg?&style=for-the-badge&logo=typescript&logoColor=white"/> <img alt="Svelte" src="https://img.shields.io/badge/svelte%20-%23f1413d.svg?&style=for-the-badge&logo=svelte&logoColor=white"/> <img alt="SASS" src="https://img.shields.io/badge/SASS%20-hotpink.svg?&style=for-the-badge&logo=SASS&logoColor=white"/>  
  
   
-## To run it locally...
+## To run locally...
 
 ### Clone the repo
 ```bash
