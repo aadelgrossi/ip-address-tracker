@@ -1,5 +1,3 @@
-<style lang="scss" src="./styles/App.scss"></style>
-
 <script lang="typescript">
   import { fetchInfo } from './services/api'
   import { onMount } from 'svelte'
@@ -8,11 +6,29 @@
 
   let result: IpfyResponse
   let position: LatLngExpression
+  let query: string
+  let loading = false
 
   onMount(async () => {
     result = await fetchInfo('')
     position = [result.location.lat, result.location.lng]
   })
+
+  const handleClick = async () => {
+    loading = true
+
+    fetchInfo(query)
+      .then((response) => {
+        result = response
+        position = [response.location.lat, response.location.lng]
+        loading = false
+      })
+      .catch((err) => {
+        console.error(err)
+        query = ''
+        loading = false
+      })
+  }
 </script>
 
 <main>
@@ -21,9 +37,16 @@
       <h1>IP Address Tracker</h1>
 
       <div class="input-group">
-        <input placeholder="Search for any IP address or domain" />
-        <button aria-label="search">
-          <img src="/icons/icon-arrow.svg" alt="search" />
+        <input
+          bind:value={query}
+          placeholder="Search for any IP address or domain"
+        />
+        <button aria-label="search" on:click={handleClick} disabled={loading}>
+          {#if loading}
+            <img src="/icons/loading.svg" alt="loading" />
+          {:else}
+            <img src="/icons/icon-arrow.svg" alt="search" />
+          {/if}
         </button>
       </div>
 
@@ -49,7 +72,9 @@
       </div>
     </div>
     <div class="map">
-      <Map {position} />
+      <Map bind:position />
     </div>
   {/if}
 </main>
+
+<style lang="scss" src="./styles/App.scss"></style>
