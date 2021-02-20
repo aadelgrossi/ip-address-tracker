@@ -1,16 +1,10 @@
-<style>
-  div {
-    height: 100%;
-    width: 100%;
-    z-index: 0;
-  }
-</style>
-
 <script lang="typescript">
-  import type { Map, LatLngExpression } from 'leaflet'
+  import type { Map, LatLngExpression, Marker } from 'leaflet'
   import * as L from 'leaflet'
+  import { afterUpdate } from 'svelte'
 
   let map: Map
+  let marker: Marker
   export let position: LatLngExpression
 
   const mapIcon = L.icon({
@@ -21,7 +15,7 @@
   const createMap = (container: HTMLDivElement): Map => {
     let m = L.map(container).setView(position, 16)
 
-    L.marker(m.getCenter(), {
+    marker = L.marker(position, {
       icon: mapIcon,
     }).addTo(m)
 
@@ -31,7 +25,7 @@
         attribution: `&copy;<a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>,
           &copy;<a href="https://carto.com/attributions" target="_blank">CARTO</a>`,
         subdomains: 'abcd',
-        maxZoom: 16,
+        maxZoom: 25,
       }
     ).addTo(m)
 
@@ -46,6 +40,20 @@
       },
     }
   }
+
+  afterUpdate(() => {
+    map.flyTo(position, 16, { duration: 2 })
+
+    marker.setLatLng(position)
+  })
 </script>
 
 <div use:mapAction />
+
+<style>
+  div {
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+  }
+</style>
