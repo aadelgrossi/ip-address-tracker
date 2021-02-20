@@ -13,7 +13,7 @@
   })
 
   const createMap = (container: HTMLDivElement): Map => {
-    let m = L.map(container).setView(position, 16)
+    let m = L.map(container).setView(position, 12)
 
     marker = L.marker(position, {
       icon: mapIcon,
@@ -42,7 +42,7 @@
   }
 
   afterUpdate(() => {
-    map.flyTo(position, 16, { duration: 2 })
+    map.flyTo(position, 14, { duration: 1 })
 
     marker.setLatLng(position)
   })

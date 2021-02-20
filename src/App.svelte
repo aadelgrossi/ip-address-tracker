@@ -14,7 +14,7 @@
     position = [result.location.lat, result.location.lng]
   })
 
-  const handleClick = async () => {
+  const onSubmit = async () => {
     loading = true
 
     fetchInfo(query)
@@ -29,6 +29,11 @@
         loading = false
       })
   }
+
+  const onInput = (event: KeyboardEvent) => {
+    if (event.key !== 'Enter') return
+    onSubmit()
+  }
 </script>
 
 <main>
@@ -39,13 +44,24 @@
       <div class="input-group">
         <input
           bind:value={query}
+          on:keydown={onInput}
           placeholder="Search for any IP address or domain"
         />
-        <button aria-label="search" on:click={handleClick} disabled={loading}>
+        <button aria-label="search" on:click={onSubmit} disabled={loading}>
           {#if loading}
-            <img src="/icons/loading.svg" alt="loading" />
+            <img
+              src="/icons/loading.svg"
+              alt="loading"
+              width={24}
+              height={24}
+            />
           {:else}
-            <img src="/icons/icon-arrow.svg" alt="search" />
+            <img
+              src="/icons/icon-arrow.svg"
+              alt="search"
+              width={10}
+              height={12}
+            />
           {/if}
         </button>
       </div>
