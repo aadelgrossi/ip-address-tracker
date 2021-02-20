@@ -1,6 +1,6 @@
 # IP Address Tracker
 
-![Design preview for the IP Address Tracker coding challenge](.github/desktop-preview.jpg)
+![Design preview for the IP Address Tracker coding challenge](.github/preview.jpg)
 
 Solution for [IP Address Tracker](https://www.frontendmentor.io/challenges/ip-address-tracker-I8-0yYAH0) front-end challenge. 
 
