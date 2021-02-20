@@ -63,7 +63,7 @@
         </div>
         <div class="item">
           <span>Timezone</span>
-          <p>{result.location.timezone} UTC</p>
+          <p>UTC {result.location.timezone}</p>
         </div>
         <div class="item">
           <span>ISP</span>
