@@ -24,7 +24,7 @@ body {
 
 h1 {
 	font-weight: 500;
-  font-size: 1.8em;
+  font-size: 2em;
 	color: white;
 }
 
@@ -70,19 +70,19 @@ input:focus {
 
 button {
 	display: flex;
-	width: 58px;
 	cursor: pointer;
 	align-items: center;
 	justify-content: center;
 	color:white;
 	border: none;
 	background-color: black;
-
+	width: 64px;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
 
 	&:hover {
 		background-color: var(--very-dark-gray);
 	}
-	
 }
 
 button:disabled {

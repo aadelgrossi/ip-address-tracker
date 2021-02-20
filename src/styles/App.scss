@@ -1,9 +1,10 @@
 main {
   text-align: center;
+  position: relative;
   width: 100%;
 }
 
-.top-section {
+header {
   background: #fff url('/pattern-bg.png') no-repeat 24%;
   background-size: cover;
   height: 22vh;
@@ -29,32 +30,32 @@ main {
     border-bottom-right-radius: 0;
   }
 
-  > button {
-    width: 64px;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-
 }
 
 .info {
+  position: absolute;
+  top: -13%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  padding: 36px 24px;
   display: flex;
-  padding: 24px;
-  margin-top: 48px;
+  align-items: center;
+  min-height: 160px;
   flex-direction: column;
   background-color: white;
   border-radius: 24px;
   gap: 1.5rem;
   box-shadow: 0px 0px 32px 5px rgba(0,0,0,0.1);
   z-index: 1;
-  width: 85%;
+  width: 70%;
 
   @media(min-width: 640px) {
-    padding: 48px;
+    padding: 0 48px;
     flex-direction: row;
     justify-content: space-between;
     max-width: 1200px;
-    width: 90%;
+    width: 80%;
   }
 }
 
@@ -72,6 +73,7 @@ main {
   > span {
     color: var(--dark-gray);
     font-size: 0.8em;
+    font-weight: 700;
     margin-bottom: 4px;
   }
 

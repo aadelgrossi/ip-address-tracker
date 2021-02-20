@@ -1,101 +1,91 @@
 <script lang="typescript">
   import { fetchInfo } from './services/api'
-  import { onMount } from 'svelte'
   import type { LatLngExpression } from 'leaflet'
   import Map from './components/Map.svelte'
+  import { onMount } from 'svelte'
+  import LoadingButton from './components/LoadingButton.svelte'
+  import SearchButton from './components/SearchButton.svelte'
+  import Footer from './components/Footer.svelte'
 
-  let result: IpfyResponse
-  let position: LatLngExpression
-  let location: string
-  let query: string
+  let search = fetchInfo('')
+  let query: string = ''
   let loading = false
+  let location: LatLngExpression
 
-  onMount(async () => {
-    result = await fetchInfo('')
-    position = [result.location.lat, result.location.lng]
-    location = `${result.location.city}, ${result.location.region} ${result.location.postalCode}`
+  onMount(() => {
+    navigator.geolocation.getCurrentPosition(({ coords }) => {
+      location = [coords.latitude, coords.longitude]
+    })
   })
 
-  const onSubmit = async () => {
+  const searchAgain = async () => {
     loading = true
+    search = fetchInfo(query)
 
-    fetchInfo(query)
-      .then((response) => {
-        result = response
-        position = [response.location.lat, response.location.lng]
-        location = `${result.location.city}, ${result.location.region} ${result.location.postalCode}`
+    const { lat, lng } = (await search).location
+    location = [lat, lng]
 
-        loading = false
-      })
-      .catch((err) => {
-        console.error(err)
-        query = ''
-        loading = false
-      })
+    loading = false
   }
 
   const onInput = (event: KeyboardEvent) => {
     if (event.key !== 'Enter') return
-    onSubmit()
+    searchAgain()
   }
 </script>
 
+<header>
+  <h1>IP Address Tracker</h1>
+
+  <div class="input-group">
+    <input
+      bind:value={query}
+      on:keydown={onInput}
+      placeholder="Search for any IP address or domain"
+      title="Search for any IP address or domain"
+    />
+
+    {#await search}
+      <LoadingButton />
+    {:then}
+      <SearchButton {searchAgain} />
+    {:catch}
+      <SearchButton {searchAgain} />
+    {/await}
+  </div>
+</header>
+
 <main>
-  {#if result}
-    <div class="top-section">
-      <h1>IP Address Tracker</h1>
-
-      <div class="input-group">
-        <input
-          bind:value={query}
-          on:keydown={onInput}
-          placeholder="Search for any IP address or domain"
-          title="Search for any IP address or domain"
-        />
-        <button aria-label="search" on:click={onSubmit} disabled={loading}>
-          {#if loading}
-            <img
-              src="/icons/loading.svg"
-              alt="loading"
-              width={24}
-              height={24}
-            />
-          {:else}
-            <img
-              src="/icons/icon-arrow.svg"
-              alt="search"
-              width={10}
-              height={12}
-            />
-          {/if}
-        </button>
+  <div class="info">
+    {#await search then result}
+      <div class="item">
+        <span>IP Address</span>
+        <p>{result.ip}</p>
       </div>
-
-      <div class="info">
-        <div class="item">
-          <span>IP Address</span>
-          <p>{result.ip}</p>
-        </div>
-        <div class="item">
-          <span>Location</span>
-          <p title={location}>
-            {location}
-          </p>
-        </div>
-        <div class="item">
-          <span>Timezone</span>
-          <p>UTC {result.location.timezone}</p>
-        </div>
-        <div class="item">
-          <span>ISP</span>
-          <p title={result.as.name}>{result.as.name}</p>
-        </div>
+      <div class="item">
+        <span>Location</span>
+        <p>
+          {`${result.location.city}, ${result.location.region} ${result.location.postalCode}`}
+        </p>
       </div>
-    </div>
-    <div class="map">
-      <Map bind:position />
-    </div>
-  {/if}
+      <div class="item">
+        <span>Timezone</span>
+        <p>UTC {result.location.timezone}</p>
+      </div>
+      <div class="item">
+        <span>ISP</span>
+        <p title={result.as.name}>{result.as.name}</p>
+      </div>
+    {/await}
+  </div>
+
+  <div class="map">
+    {#if location}
+      <Map position={location} />
+    {/if}
+  </div>
 </main>
+
+<Footer />
 
 <style lang="scss" src="./styles/App.scss"></style>
