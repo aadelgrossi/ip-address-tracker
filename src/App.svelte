@@ -71,7 +71,9 @@
       </div>
       <div class="item">
         <span>Location</span>
-        <p>
+        <p
+          title={`${result.location.city}, ${result.location.region} ${result.location.postalCode}`}
+        >
           {`${result.location.city}, ${result.location.region} ${result.location.postalCode}`}
         </p>
       </div>

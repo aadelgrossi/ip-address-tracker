@@ -7,7 +7,7 @@ main {
 header {
   background: #fff url('/pattern-bg.png') no-repeat 24%;
   background-size: cover;
-  height: 24vh;
+  height: 26vh;
 
   display:flex;
   flex-direction: column;
@@ -75,6 +75,10 @@ header {
     font-weight: 700;
     letter-spacing: 0.6px;
     margin-bottom: 4px;
+
+    @media(min-width: 640px) {
+      margin-bottom: 8px;
+    }
   }
 
   @media(min-width: 640px) {
@@ -91,7 +95,7 @@ header {
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
-      max-width: 420px;
+      max-width: 340px;
     }
   }
 
@@ -112,5 +116,5 @@ header {
 }
 
 .map {
-  height: calc(72vh - 2em);
+  height: calc(70vh - 2em);
 }
