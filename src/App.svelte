@@ -44,12 +44,14 @@
 <header>
   <h1>IP Address Tracker</h1>
 
-  <div class="input-group">
+  <form class="input-group">
     <input
       bind:value={query}
       on:keydown={onInput}
+      type="text"
       placeholder="Search for any IP address or domain"
       title="Search for any IP address or domain"
+      aria-label="search-input"
     />
 
     {#if loading}
@@ -57,7 +59,7 @@
     {:else}
       <SearchButton {onSubmit} />
     {/if}
-  </div>
+  </form>
 </header>
 
 <main>
