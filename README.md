@@ -30,7 +30,7 @@ Obtain a free API key from ipify's IP Geolocation API signing up [here](https://
 Rename .env.example to .env
 
 ```bash
-$ mv .env.example env
+$ mv .env.example .env
 ```
 
 Update IPIFY_API_KEY variable with your key.
