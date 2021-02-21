@@ -2,35 +2,42 @@
   import { fetchInfo } from './services/api'
   import type { LatLngExpression } from 'leaflet'
   import Map from './components/Map.svelte'
-  import { onMount } from 'svelte'
   import LoadingButton from './components/LoadingButton.svelte'
   import SearchButton from './components/SearchButton.svelte'
   import Footer from './components/Footer.svelte'
+  import { onMount } from 'svelte'
 
-  let search = fetchInfo('')
+  let result: IpfyResponse
   let query: string = ''
   let loading = false
   let location: LatLngExpression
 
-  onMount(() => {
-    navigator.geolocation.getCurrentPosition(({ coords }) => {
-      location = [coords.latitude, coords.longitude]
-    })
-  })
-
-  const searchAgain = async () => {
-    loading = true
-    search = fetchInfo(query)
-
-    const { lat, lng } = (await search).location
+  const setLocation = (item: IpfyResponse) => {
+    const { lat, lng } = item.location
     location = [lat, lng]
-
-    loading = false
   }
+
+  const onSubmit = async () => {
+    loading = true
+
+    fetchInfo(query)
+      .then((response) => {
+        result = response
+        setLocation(response)
+        loading = false
+      })
+      .catch((err) => {
+        loading = false
+      })
+  }
+
+  onMount(() => {
+    onSubmit()
+  })
 
   const onInput = (event: KeyboardEvent) => {
     if (event.key !== 'Enter') return
-    searchAgain()
+    onSubmit()
   }
 </script>
 
@@ -45,19 +52,17 @@
       title="Search for any IP address or domain"
     />
 
-    {#await search}
+    {#if loading}
       <LoadingButton />
-    {:then}
-      <SearchButton {searchAgain} />
-    {:catch}
-      <SearchButton {searchAgain} />
-    {/await}
+    {:else}
+      <SearchButton {onSubmit} />
+    {/if}
   </div>
 </header>
 
 <main>
   <div class="info">
-    {#await search then result}
+    {#if result}
       <div class="item">
         <span>IP Address</span>
         <p>{result.ip}</p>
@@ -76,7 +81,7 @@
         <span>ISP</span>
         <p title={result.as.name}>{result.as.name}</p>
       </div>
-    {/await}
+    {/if}
   </div>
 
   <div class="map">
