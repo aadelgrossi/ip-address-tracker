@@ -23,6 +23,22 @@ $ git clone https://github.com/aadelgrossi/ip-address-tracker
 $ yarn install 
 ```
 
+### Setup ipify API key
+
+Obtain a free API key from ipify's IP Geolocation API signing up [here](https://geo.ipify.org/signup).  
+  
+Rename .env.example to .env
+
+```bash
+$ mv .env.example env
+```
+
+Update IPIFY_API_KEY variable with your key.
+
+```bash
+IPIFY_API_KEY=#your key goes here
+```
+
 ### Start the server
 ```bash
 $ yarn dev
