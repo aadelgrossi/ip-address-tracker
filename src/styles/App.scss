@@ -7,16 +7,16 @@ main {
 header {
   background: #fff url('/pattern-bg.png') no-repeat 24%;
   background-size: cover;
-  height: 22vh;
+  height: 24vh;
 
   display:flex;
   flex-direction: column;
   align-items: center;
-  padding: 48px 24px;
+  padding: 2em;
 }
 
 .input-group {
-  margin-top: 2em;
+  margin-top: 1.5em;
   width: 100%;
   display: flex;
 
@@ -38,13 +38,13 @@ header {
   left: 0;
   right: 0;
   margin: 0 auto;
-  padding: 36px 24px;
+  padding: 3em 2em;
   display: flex;
   align-items: center;
   min-height: 160px;
   flex-direction: column;
   background-color: white;
-  border-radius: 24px;
+  border-radius: 1em;
   gap: 1.5rem;
   box-shadow: 0px 0px 32px 5px rgba(0,0,0,0.1);
   z-index: 1;
@@ -54,8 +54,7 @@ header {
     padding: 0 48px;
     flex-direction: row;
     justify-content: space-between;
-    max-width: 1200px;
-    width: 80%;
+    max-width: calc(1100px - 2em);
   }
 }
 
@@ -74,6 +73,7 @@ header {
     color: var(--dark-gray);
     font-size: 0.8em;
     font-weight: 700;
+    letter-spacing: 0.6px;
     margin-bottom: 4px;
   }
 
@@ -112,5 +112,5 @@ header {
 }
 
 .map {
-  height: calc(78vh - 96px);
+  height: calc(72vh - 2em);
 }
